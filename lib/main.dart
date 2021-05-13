@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shopping_app/screens/homepage.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,10 +9,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Material(
-        child: Center(child: Text("FLUTTER REVISON"),),
-      ),
-      
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
