@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_shopping_app/models/catalog.dart';
-import 'package:flutter_shopping_app/widgets/ItemWidget.dart';
-import 'package:flutter_shopping_app/widgets/myDrawer.dart';
+import 'package:flutter_shopping_app/screens/homescreen_detail.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,11 +42,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               CatalogHeader(),
               if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-                CatalogList().expand()
+                CatalogList().py32().expand()
               else
-                Center(
-                  child: CircularProgressIndicator(),
-                )
+                CircularProgressIndicator().centered().expand()
             ],
           ),
         ),
@@ -62,7 +60,7 @@ class CatalogHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         "Catalog App".text.xl5.bold.color(Colors.deepPurple).make(),
-        "Trending Products".text.make(),
+        "Trending Products".text.xl.make(),
       ],
     );
   }
@@ -76,7 +74,17 @@ class CatalogList extends StatelessWidget {
       itemCount: CatalogModel.items.length,
       itemBuilder: (context, index) {
         final catalog = CatalogModel.items[index];
-        return CatalogItem(catalog: catalog);
+        return GestureDetector(
+          child: CatalogItem(catalog: catalog),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeDetailPage(catalog: catalog),
+              ),
+            );
+          },
+        );
       },
     );
   }
@@ -93,14 +101,17 @@ class CatalogItem extends StatelessWidget {
     return VxBox(
         child: Row(
       children: [
-        Image.network(catalog.image)
-            .p8()
-            .box
-            .rounded
-            .color(Colors.lightBlue)
-            .make()
-            .p16()
-            .w40(context),
+        Hero(
+          tag: Key(catalog.id.toString()),
+          child: Image.network(catalog.image)
+              .p8()
+              .box
+              .rounded
+              .color(Colors.lightBlue)
+              .make()
+              .p16()
+              .w40(context),
+        ),
         Expanded(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -121,7 +132,7 @@ class CatalogItem extends StatelessWidget {
                       shape: MaterialStateProperty.all(StadiumBorder())),
                 )
               ],
-            )
+            ),
           ],
         ))
       ],
