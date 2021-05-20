@@ -1,15 +1,10 @@
 class CatalogModel {
-  static List<Item> items = [
-    Item(
-      id: 1,
-      name: "iPhone 12 Pro",
-      desc: "Apple iPhone 12th gen",
-      price: 999,
-      color: "#33505a",
-      image:
-          "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1604021661000",
-    ),
-  ];
+  static List<Item> items;
+
+  getById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
+
+  Item getByPosition(int pos) => items[pos];
 }
 
 class Item {
@@ -20,7 +15,14 @@ class Item {
   final String color;
   final String image;
 
-  Item({this.id, this.name, this.desc, this.price, this.color, this.image});
+  Item({
+    this.id,
+    this.name,
+    this.desc,
+    this.price,
+    this.color,
+    this.image,
+  });
 
   factory Item.fromMap(Map<String, dynamic> map) {
     return Item(

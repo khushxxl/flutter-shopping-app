@@ -21,11 +21,11 @@ class HomeDetailPage extends StatelessWidget {
             "\$${catalog.price}".text.xl3.bold.color(Colors.yellow).make(),
             ElevatedButton(
               onPressed: () {},
-              child: "Buy".text.bold.xl.color(Colors.deepPurple).make(),
+              child: "Add To Cart".text.bold.xl.color(Colors.deepPurple).make(),
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.white),
                   shape: MaterialStateProperty.all(StadiumBorder())),
-            ).wh(100, 50),
+            ).wh(150, 50),
           ],
         ).p32(),
       ),
@@ -54,6 +54,12 @@ class HomeDetailPage extends StatelessWidget {
                     catalog.name.text.xl4.color(Colors.yellow).bold.make(),
                     10.heightBox,
                     catalog.desc.text.color(Colors.white).make(),
+                    "Et justo lorem stet duo aliquyam, dolor eirmod clita sadipscing sanctus sed, diam amet lorem eos voluptua sea dolore, lorem diam elitr voluptua eos et diam est ea lorem, magna et lorem takimata kasd, sit aliquyam clita labore diam. Gubergren."
+                        .text
+                        .textStyle(context.captionStyle)
+                        .color(Colors.white)
+                        .make()
+                        .p16()
                   ],
                 ).py64(),
               ),
