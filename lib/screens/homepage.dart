@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:flutter_shopping_app/models/catalog.dart';
 import 'package:flutter_shopping_app/screens/homescreen_detail.dart';
 import 'package:flutter_shopping_app/utils/routes.dart';
+import 'addToCart.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
@@ -133,13 +135,8 @@ class CatalogItem extends StatelessWidget {
               alignment: MainAxisAlignment.spaceBetween,
               children: [
                 "\$${catalog.price}".text.bold.make(),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: "Add To Cart".text.make(),
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.deepPurple),
-                      shape: MaterialStateProperty.all(StadiumBorder())),
+                AddToCart(
+                  catalog: catalog,
                 )
               ],
             ),

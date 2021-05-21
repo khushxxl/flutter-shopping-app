@@ -1,34 +1,43 @@
-import 'package:flutter_shopping_app/models/catalog.dart';
+import 'catalog.dart';
 
 class CartModel {
-  // catalog ke model lo dusra naam diya hai bas!
+  static final cartModel = CartModel._internal();
+
+  CartModel._internal();
+
+  factory CartModel() => cartModel;
+
+  // catalog field
   CatalogModel _catalog;
 
+  // Collection of IDs - store Ids of each item
   final List<int> _itemIds = [];
 
+  // Get Catalog
   CatalogModel get catalog => _catalog;
 
   set catalog(CatalogModel newCatalog) {
-    assert(catalog != null);
+    assert(newCatalog != null);
     _catalog = newCatalog;
   }
 
-  // mapping id of new list to catalog model
+  // Get items in the cart
+  List<dynamic> get items =>
+      _itemIds.map((id) => _catalog.getById(id)).toList();
 
-  List<Item> get items => _itemIds.map((id) => _catalog.getById(id)).toList();
-
-// get total price logic
+  // Get total price
   num get totalPrice =>
       items.fold(0, (total, current) => total + current.price);
 
-  // add item
-  void addItem(Item item) {
+  // Add Item
+
+  void add(Item item) {
     _itemIds.add(item.id);
   }
 
-  //remove item
+  // Remove Item
 
-  void removeItem(Item item) {
+  void remove(Item item) {
     _itemIds.remove(item.id);
   }
 }
