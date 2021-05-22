@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shopping_app/models/store.dart';
 import 'package:flutter_shopping_app/screens/cart_page.dart';
 import 'package:flutter_shopping_app/screens/homepage.dart';
 import 'package:flutter_shopping_app/screens/login_page.dart';
 import 'package:flutter_shopping_app/utils/routes.dart';
 
 import 'package:flutter/services.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    VxState(
+      store: MyStore(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
