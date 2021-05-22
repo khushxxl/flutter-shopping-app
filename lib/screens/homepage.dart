@@ -38,8 +38,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.cardColor,
-      floatingActionButton: FloatingActionButton(
+       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, MyRoutes.cartPageRoute);
         },
@@ -71,8 +70,8 @@ class CatalogHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "Catalog App".text.xl5.bold.color(Colors.deepPurple).make(),
-        "Trending Products".text.xl.make(),
+        "Just Shop It 🛒".text.xl5.bold.color(Colors.deepPurple).make(),
+        "Trending Products 🔥".text.xl.make(),
       ],
     );
   }
